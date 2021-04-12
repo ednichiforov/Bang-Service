@@ -9,4 +9,5 @@ urlpatterns = [
     path('menu', views.menu, name="menu"),
     path('excel', views.excel, name="excel"),
     path('users', views.users, name="users"),
+    path('admin', views.users, name="admin")
 ]

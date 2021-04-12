@@ -1,6 +1,10 @@
 /venv
 .idea/
-/Users/ednichiforov/Python/Bang_service/Bang/Bang/__pycache__
-/Users/ednichiforov/Python/Bang_service/Bang/main/__pycache__
+Bang/Bang/__pycache__/
+Bang/main/__pycache__/
 Bang/.DS_Store
 /.DS_Store
+Bang/main/.DS_Store
+
+
+

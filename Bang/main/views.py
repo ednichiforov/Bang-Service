@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import School, Party, Bar, Menu
 
 
 def general(request):
@@ -6,22 +7,27 @@ def general(request):
 
 
 def school(request):
-    return render(request, 'main/school.html')
+    text = School.objects.all()
+    return render(request, 'main/school.html', {"text": text})
 
 
 def party(request):
-    return render(request, 'main/party.html')
+    text = Party.objects.all()
+    return render(request, 'main/party.html', {"text": text})
 
 
 def bar(request):
-    return render(request, 'main/bar.html')
+    text = Bar.objects.all()
+    return render(request, 'main/bar.html', {"text": text})
 
 
 def menu(request):
-    return render(request, 'main/menu.html')
+    text = Menu.objects.all()
+    return render(request, 'main/menu.html', {"text": text})
 
 
 def excel(request):
+    pass
     return render(request, 'main/excel.html')
 
 
