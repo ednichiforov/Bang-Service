@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import School, Party, Bar, Menu
+from .models import *
 
 
 def general(request):
