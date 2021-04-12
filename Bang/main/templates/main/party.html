@@ -9,5 +9,7 @@
 {% endblock %}
 
 {% block content %}
-верухи
+    {% for element in tasks %}
+{{ element.text }}
+    {% endfor %}
 {% endblock %}
