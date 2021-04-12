@@ -9,6 +9,7 @@ class School(models.Model):
         return self.name
 
     class Meta:
+        db_table = "Main_School"
         verbose_name = "Школа"
         verbose_name_plural = "Школа"
 
@@ -21,6 +22,7 @@ class Party(models.Model):
         return self.name
 
     class Meta:
+        db_table = "Main_Party"
         verbose_name = "Вечерухи"
         verbose_name_plural = "Вечерухи"
 
@@ -33,6 +35,7 @@ class Bar(models.Model):
         return self.name
 
     class Meta:
+        db_table = "Main_Bar"
         verbose_name = "Бар"
         verbose_name_plural = "Бар"
 
@@ -45,5 +48,6 @@ class Menu(models.Model):
         return self.name
 
     class Meta:
+        db_table = "Main_Menu"
         verbose_name = "Меню"
         verbose_name_plural = "Меню"
