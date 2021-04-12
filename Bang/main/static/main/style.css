@@ -188,6 +188,7 @@
     top: 4px;
   }
 
+
   .menu-toggler.active span:nth-child(2){
     opacity: 0;
   }
