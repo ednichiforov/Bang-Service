@@ -17,6 +17,7 @@ class School(models.Model):
 class Party(models.Model):
     name = "Вечерухи"
     text = models.TextField('Описание')
+    picture = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -51,3 +52,11 @@ class Menu(models.Model):
         db_table = "Main_Menu"
         verbose_name = "Меню"
         verbose_name_plural = "Меню"
+
+
+class Users(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    phone_number = models.IntegerField()
+    telegram_id = models.IntegerField()
+    registration_date = models.DateTimeField(auto_now_add=True)
