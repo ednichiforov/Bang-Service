@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    {% for element in tasks %}
-{{ element.text }}
+    {% for element in text %}
+        {{ element.text | linebreaks }}
     {% endfor %}
 {% endblock %}
