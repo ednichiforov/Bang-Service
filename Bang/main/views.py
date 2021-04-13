@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import *
+from .models import School, Party, Bar, Menu
 
 
 def general(request):
@@ -27,7 +27,6 @@ def menu(request):
 
 
 def excel(request):
-    pass
     return render(request, 'main/excel.html')
 
 
