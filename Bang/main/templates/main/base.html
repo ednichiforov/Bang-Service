@@ -17,16 +17,14 @@
     <a class="p-2 text-dark {% block party %}{% endblock %}" href="{% url 'party' %}">Вечерухи</a>
     <a class="p-2 text-dark {% block bar %}{% endblock %}" href="{% url 'bar' %}">Бар</a>
     <a class="p-2 text-dark {% block menu %}{% endblock %}" href="{% url 'menu' %}">Меню</a>
-    <a class="p-2 text-dark {% block excel %}{% endblock %}" href="{% url 'excel' %}">Эксель</a>
     <a class="p-2 text-dark {% block users %}{% endblock %}" href="{% url 'users' %}">Пользователи</a>
-    <a class="p-2 text-dark " href="{% url 'admin' %}">Админка</a>
+    <a class="p-2 text-dark " href="admin/">Админка</a>
   </nav>
 </div>
 
 <div class="col-md-5 p-lg-5 mx-auto my-5">
         {% block content %}
         {% endblock %}
-    </pre>
 </div>
 
 </body>
