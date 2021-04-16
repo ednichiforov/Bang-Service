@@ -26,9 +26,5 @@ def menu(request):
     return render(request, 'main/menu.html', {"text": text})
 
 
-def excel(request):
-    return render(request, 'main/excel.html')
-
-
 def users(request):
     return render(request, 'main/users.html')

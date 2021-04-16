@@ -7,5 +7,7 @@ Bang/.DS_Store
 Bang/main/.DS_Store
 Bang/main/migrations/__pycache__/
 Bang/main/migrations/ *
+Bang/__pycache__/
+
 
 
