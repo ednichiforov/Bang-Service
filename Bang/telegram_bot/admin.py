@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UsersStartedConv, UserActionLog
+from .models import UsersStartedConv, PartyUsers
 
 
 @admin.register(UsersStartedConv)
@@ -8,6 +8,6 @@ class MainInfo(admin.ModelAdmin):
     search_fields = ('username', 'user_id')
 
 
-@admin.register(UserActionLog)
-class UserActionLogAdmin(admin.ModelAdmin):
-    list_display = ['user', 'action', 'created_at']
+@admin.register(PartyUsers)
+class MainInfo(admin.ModelAdmin):
+    list_display = ["user", "real_name", "real_last_name", "number", "user_id"]

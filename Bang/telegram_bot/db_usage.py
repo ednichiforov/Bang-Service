@@ -1,4 +1,4 @@
-from telegram_bot.models import UsersStartedConv, PartyUsers
+from .models import UsersStartedConv, PartyUsers
 from django.db import IntegrityError
 
 
