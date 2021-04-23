@@ -27,12 +27,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'main',
     'import_export',
     'telegram_bot',
     'django_cleanup',
 
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,7 +77,7 @@ DATABASES = {
         'NAME': 'bang',
         'USER': 'bang',
         'PASSWORD': 'bang',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
