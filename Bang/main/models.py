@@ -36,15 +36,3 @@ class Bar(models.Model):
         db_table = "Main_Bar"
         verbose_name = "Бар"
         verbose_name_plural = "Бар"
-
-
-class Menu(models.Model):
-    text = models.TextField(verbose_name="Описание")
-
-    def __str__(self):
-        return self.text
-
-    class Meta:
-        db_table = "Main_Menu"
-        verbose_name = "Меню"
-        verbose_name_plural = "Меню"

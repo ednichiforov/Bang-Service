@@ -6,7 +6,5 @@ urlpatterns = [
     path('school', views.school, name="school"),
     path('party', views.party, name="party"),
     path('bar', views.bar, name="bar"),
-    path('menu', views.menu, name="menu"),
-    path('users', views.users, name="users"),
-    path('admin', views.users, name="admin")
+    path('users/<str:user_id>', views.users, name="users"),
 ]
