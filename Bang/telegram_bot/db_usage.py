@@ -1,4 +1,4 @@
-from telegram_bot.models import UsersStartedConv, UserActionLog
+from telegram_bot.models import UsersStartedConv, PartyUsers
 from django.db import IntegrityError
 
 
@@ -17,10 +17,12 @@ def get_user_data_from_update(update):
         pass
 
 
-def write_user_logs(update, action):
+def register_user_to_party(user_party_info, update):
+    """ Adds information about party user in DB"""
     user = update.message.from_user
-    UserActionLog.objects.create(
-            id=None,
-            action=action,
-            user=user.id,
+    PartyUsers.objects.create(
+            real_name=user_party_info[0],
+            real_last_name=user_party_info[1],
+            number=user_party_info[2],
+            user=UsersStartedConv.objects.get(user_id=user.id),
         )
