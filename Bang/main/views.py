@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from .models import School, Party, Bar
-from telegram_bot.models import PartyUsers
+from telegram_bot.models import PartyUsersForNearestParty
 
 
 def general(request):
-    return render(request, 'main/index.html')
+    return render(request, 'main/base.html')
 
 
 def school(request):
@@ -23,5 +23,5 @@ def bar(request):
 
 
 def users(request, user_id):
-    PartyUsers.objects.get(user_id=user_id)
+    PartyUsersForNearestParty.objects.get(user_id=user_id)
     return render(request, 'main/users.html')

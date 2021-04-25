@@ -18,7 +18,7 @@ class UsersStartedConv(models.Model):
         verbose_name_plural = "пользователи"
 
 
-class PartyUsers(models.Model):
+class PartyUsersForNearestParty(models.Model):
     user = models.ForeignKey(UsersStartedConv, on_delete=models.CASCADE)
     real_name = models.CharField(max_length=30, null=False, verbose_name="Имя для вечеринки")
     real_last_name = models.CharField(max_length=30, null=False, verbose_name="Фамилия для вечеринки")
@@ -29,6 +29,22 @@ class PartyUsers(models.Model):
         return f"Id: {self.user}, {self.real_name}, зарегистрировался {self.created_at.strftime('(%H:%M, %d %B %Y)')}"
 
     class Meta:
-        db_table = "Telegram_Party_Users"
-        verbose_name = "Пользователя вечеринки"
-        verbose_name_plural = "Пользователи вечеринки"
+        db_table = "Telegram_Party_Users_For_Nearest_Party"
+        verbose_name = "Пользователя текущей вечеринки"
+        verbose_name_plural = "Пользователи текущей вечеринки"
+
+
+class AllPartyUsers(models.Model):
+    user = models.ForeignKey(UsersStartedConv, on_delete=models.CASCADE)
+    real_name = models.CharField(max_length=30, null=False, verbose_name="Имя для вечеринки")
+    real_last_name = models.CharField(max_length=30, null=False, verbose_name="Фамилия для вечеринки")
+    number = models.CharField(max_length=30, null=False, verbose_name="Номер для вечеринки")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Id: {self.user}, {self.real_name}, зарегистрировался {self.created_at.strftime('(%H:%M, %d %B %Y)')}"
+
+    class Meta:
+        db_table = "Telegram_All_Party_Users"
+        verbose_name = "Пользователя всех вечеринок"
+        verbose_name_plural = "Пользователи всех вечеринок"
