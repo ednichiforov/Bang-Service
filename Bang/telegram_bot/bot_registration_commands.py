@@ -10,38 +10,38 @@ from .db_usage import register_user_to_party
 
 FIRST_NAME_REG, LAST_NAME_REG, NUMBER_REG, END = range(4)
 
+
 user_party_info = []
 
 
-def first_name_reg(update: Update, _: CallbackContext):
+@custom_info_logging
+def first_name_reg(update: Update, _: CallbackContext) -> int:
     """ Asks for first name"""
-    custom_info_logging(update=update, action="first_name_reg")
 
     update.message.reply_text(
         text="Введите ваше имя или нажмите на /cancel для отмены",
-        reply_markup=ReplyKeyboardRemove()
-
+        reply_markup=ReplyKeyboardRemove(),
     )
 
     return LAST_NAME_REG
 
 
-def last_name_reg(update: Update, _: CallbackContext):
+@custom_info_logging
+def last_name_reg(update: Update, _: CallbackContext) -> int:
     """ Asks for first name"""
-    custom_info_logging(update=update, action="last_name_reg")
 
     user_party_info.append(update.message.text)
 
     update.message.reply_text(
-        text="Введите вашу фамилию или нажмите на /cancel для отмены"
+        text="Введите вашу фамилию или нажмите на /cancel для отмены",
     )
 
     return NUMBER_REG
 
 
-def number_reg(update: Update, _: CallbackContext):
+@custom_info_logging
+def number_reg(update: Update, _: CallbackContext) -> int:
     """ Asks for first name"""
-    custom_info_logging(update=update, action="number_reg")
 
     user_party_info.append(update.message.text)
 
@@ -52,9 +52,9 @@ def number_reg(update: Update, _: CallbackContext):
     return END
 
 
-def end(update: Update, _: CallbackContext):
+@custom_info_logging
+def end(update: Update, _: CallbackContext) -> int:
     """ Ends the registration"""
-    custom_info_logging(update=update, action="end")
 
     user_party_info.append(update.message.text)
 
@@ -73,11 +73,14 @@ def end(update: Update, _: CallbackContext):
     return ConversationHandler.END
 
 
-def cancel(update: Update, _: CallbackContext):
+@custom_info_logging
+def cancel(update: Update, _: CallbackContext) -> int:
     """ Cancel the registration"""
-    custom_info_logging(update=update, action="cancel")
+
+    user_party_info.clear()
+
     update.message.reply_text(
-        text='В след раз зарегестрируетесь.',
+        text="В след раз зарегестрируетесь.",
         reply_markup=reply_markup,
     )
 
