@@ -2,13 +2,13 @@ from telegram import Update, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler, CallbackContext
 
 
-from .bot_info_commands import reply_markup
+from .bot_info_commands import REPLY_MARKUP
 from .custom_logging import custom_info_logging
 from .qr_code_generator import qr_code_image
 from .db_usage import register_user_to_party
 
 
-FIRST_NAME_REG, LAST_NAME_REG, NUMBER_REG, END = range(4)
+FIRST_NAME_REG, LAST_NAME_REG, NUMBER_REG, USER_REGISTER_END = range(4)
 
 
 user_party_info = []
@@ -19,7 +19,7 @@ def first_name_reg(update: Update, _: CallbackContext) -> int:
     """ Asks for first name"""
 
     update.message.reply_text(
-        text="Введите ваше имя или нажмите на /cancel для отмены",
+        text="Введите ваше имя или нажмите на /user_cancel для отмены",
         reply_markup=ReplyKeyboardRemove(),
     )
 
@@ -33,7 +33,7 @@ def last_name_reg(update: Update, _: CallbackContext) -> int:
     user_party_info.append(update.message.text)
 
     update.message.reply_text(
-        text="Введите вашу фамилию или нажмите на /cancel для отмены",
+        text="Введите вашу фамилию или нажмите на /user_cancel для отмены",
     )
 
     return NUMBER_REG
@@ -46,14 +46,14 @@ def number_reg(update: Update, _: CallbackContext) -> int:
     user_party_info.append(update.message.text)
 
     update.message.reply_text(
-        text="Введите ваш номер или нажмите на /cancel для отмены"
+        text="Введите ваш номер или нажмите на /user_cancel для отмены"
     )
 
-    return END
+    return USER_REGISTER_END
 
 
 @custom_info_logging
-def end(update: Update, _: CallbackContext) -> int:
+def registration_end(update: Update, _: CallbackContext) -> int:
     """ Ends the registration"""
 
     user_party_info.append(update.message.text)
@@ -67,21 +67,21 @@ def end(update: Update, _: CallbackContext) -> int:
     update.message.bot.send_photo(chat_id=update.effective_chat.id, photo=qr_code)
     update.message.reply_text(
         text="Вы зарегестрированы",
-        reply_markup=reply_markup,
+        reply_markup=REPLY_MARKUP,
     )
 
     return ConversationHandler.END
 
 
 @custom_info_logging
-def cancel(update: Update, _: CallbackContext) -> int:
+def user_cancel(update: Update, _: CallbackContext) -> int:
     """ Cancel the registration"""
 
     user_party_info.clear()
 
     update.message.reply_text(
         text="В след раз зарегестрируетесь.",
-        reply_markup=reply_markup,
+        reply_markup=REPLY_MARKUP,
     )
 
     return ConversationHandler.END
