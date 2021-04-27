@@ -9,7 +9,5 @@
 {% endblock %}
 
 {% block content %}
-    {% for element in text %}
-        {{ element.text | linebreaks }}
-    {% endfor %}
+    {{ text | linebreaks }}
 {% endblock %}
