@@ -4,24 +4,24 @@ from telegram_bot.models import PartyUsersForNearestParty
 
 
 def general(request):
-    return render(request, 'main/base.html')
+    return render(request, "main/base.html")
 
 
 def school(request):
-    text = School.objects.all()
-    return render(request, 'main/school.html', {"text": text})
+    text = School.objects.only("text").last()
+    return render(request, "main/school.html", {"text": text})
 
 
 def party(request):
-    text = Party.objects.all()
-    return render(request, 'main/party.html', {"text": text})
+    text = Party.objects.only("text").last()
+    return render(request, "main/party.html", {"text": text})
 
 
 def bar(request):
-    text = Bar.objects.all()
-    return render(request, 'main/bar.html', {"text": text})
+    text = Bar.objects.only("text").last()
+    return render(request, "main/bar.html", {"text": text})
 
 
 def users(request, user_id):
     PartyUsersForNearestParty.objects.get(user_id=user_id)
-    return render(request, 'main/users.html')
+    return render(request, "main/users.html")
