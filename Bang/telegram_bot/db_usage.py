@@ -2,9 +2,11 @@ from .models import UsersStartedConv, PartyUsersForNearestParty
 from django.db import IntegrityError
 
 
-def get_user_data_from_update(update):
+def get_user_data_from_update(update) -> None:
     """ Adds information about user in DB """
+
     user = update.message.from_user
+
     try:
         UsersStartedConv.objects.create(
             user_id=user.id,
@@ -17,11 +19,20 @@ def get_user_data_from_update(update):
         pass
 
 
-def register_user_to_party(user_party_info, update):
+def register_user_to_party(user_party_info, update) -> None:
     """ Adds information about party user in DB"""
+
     user = update.message.from_user
+
     try:
         PartyUsersForNearestParty.objects.create(
+            real_name=user_party_info[0],
+            real_last_name=user_party_info[1],
+            number=user_party_info[2],
+            user=UsersStartedConv.objects.get(user_id=user.id),
+        )
+    except IntegrityError:
+        PartyUsersForNearestParty.objects.update(
             real_name=user_party_info[0],
             real_last_name=user_party_info[1],
             number=user_party_info[2],
