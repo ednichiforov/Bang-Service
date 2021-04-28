@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+  <script src="{% static 'main/js/scripts.js' %}"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="inner-width">
+      <a target="_blank" href="/admin" class="logo"></a>
+      <button class="menu-toggler">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="navbar-menu">
+        <a href="#home">Главная</a>
+        <a href="#about">О нас</a>
+        <a href="#school">DJ SCHOOL</a>
+        <a href="#parties">PARTY PLACE</a>
+        <a href="#bar">Барное меню</a>
+        <a href="#contact">Связаться с нами</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home -->
+  <section id="home">
+    <div class="inner-width">
+      <div class="content">
+        <h1> Bang </h1>
+        <div class="sm">
+          <a target="_blank" href="https://vk.com/bangvrn" class="fab fa-vk"></a>
+          <a target="_blank" href="https://t.me/Bangdjplace_bot" class="fab fa-telegram"></a>
+          <a target="_blank" href="https://www.instagram.com/bang_djs_vrn/" class="fab fa-instagram"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="inner-width">
+      <h1 class="section-title">О нас</h1>
+      <div class="about-content">
+        <img src="{% static 'main/images/pic.jpg' %}" alt="about" class="about-pic">
+        <div class="near-photo-text">
+          <h2>Bang</h2>
+          <h3>
+            <span>DJ SCHOOL</span>
+            <span>PARTY PLACE</span>
+            <span>JAM'ы</span>
+          </h3>
+          <p>
+              {{ about_text | linebreaks }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- DJ SCHOOL -->
+  <section id="school" class="dark">
+    <div class="inner-width">
+      <h1 class="section-title">DJ SCHOOL</h1>
+        <div class="school-text">
+            <p>
+              {{ school_text | linebreaks }}
+          </p>
+        </div>
+    </div>
+  </section>
+
+<!-- Parties -->
+  <section id="parties">
+    <div class="inner-width">
+      <h1 class="section-title">PARTY PLACE</h1>
+        <div class="party-content">
+            <img src="/media/{{picture_name}}"   alt="Афиша" class="party-pic">
+            <div class="near-photo-text">
+                <p>
+                    {{ party_text | linebreaks }}
+                </p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+<!-- Bar -->
+  <section id="bar" class="dark">
+    <div class="inner-width">
+      <h1 class="section-title">Барное меню</h1>
+        <div class="bar-text">
+            <p>
+              {{ bar_text | linebreaks }}
+          </p>
+        </div>
+    </div>
+  </section>
+
+<!-- Contact -->
+  <section id="contact">
+      <div class="inner-width">
+          <h1 class="section-title">Связаться с нами</h1>
+          <div class="contact-info">
+              <div class="item">
+                  <i class="fas fa-mobile-alt"></i>
+                      + 934 434 34 43
+              </div>
+
+              <div class="item">
+                  <i class="fas fa-map-marker-alt"></i>
+                      Карла Маркса 68, Воронеж
+              </div>
+          </div>
+      </div>
+  </section>
+
+<!-- Footer -->
+  <footer>
+      <div class="inner-width">
+          <div class="copyright">
+              &copy; 2021 | Created and Designed By <a href="#">ednichiforov</a>
+          </div>
+          <div class="sm">
+              <a target="_blank" href="#" class="fab fa-instagram"></a>
+              <a target="_blank" href="#" class="fab fa-telegram"></a>
+          </div>
+      </div>
+  </footer>
+
+<!-- Go Top BTN-->
+<button class="goTop fas fa-arrow-up"></button>
+
+</body>
+</html>
