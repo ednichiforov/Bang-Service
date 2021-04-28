@@ -9,8 +9,8 @@ class School(models.Model):
 
     class Meta:
         db_table = "Main_School"
-        verbose_name = "Школа"
-        verbose_name_plural = "Школа"
+        verbose_name = "DJ SCHOOL"
+        verbose_name_plural = "DJ SCHOOL"
 
 
 class Party(models.Model):
@@ -34,5 +34,17 @@ class Bar(models.Model):
 
     class Meta:
         db_table = "Main_Bar"
-        verbose_name = "Бар"
-        verbose_name_plural = "Бар"
+        verbose_name = "Барное меню"
+        verbose_name_plural = "Барное меню"
+
+
+class About(models.Model):
+    text = models.TextField(verbose_name="Описание")
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        db_table = "Main_About"
+        verbose_name = "О нас"
+        verbose_name_plural = "О нас"
