@@ -1,4 +1,4 @@
-from telegram import Update, ReplyKeyboardRemove, InputMediaPhoto
+from telegram import Update, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler, CallbackContext
 
 from .bot_info_commands import REPLY_MARKUP

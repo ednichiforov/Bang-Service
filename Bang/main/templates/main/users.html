@@ -21,7 +21,7 @@
       </header>
       <main class="px-3">
         <h1>Зарегестрирован.</h1>
-        <img src="/media/{{picture_name}}"   alt="Афиша" class="party-pic">
+        <img src={{ media }} alt="Афиша" class="party-pic" >
       </main>
         <style>
             .party-pic{
@@ -36,7 +36,7 @@
             }
         </style>
       <footer class="mt-auto text-white-50">
-        <p> <a class="text-white">Bang</a> </p>
+        <p>  <a href="{% url 'general' %}" class="text-white">Bang</a> </p>
       </footer>
     </div>
     </body>

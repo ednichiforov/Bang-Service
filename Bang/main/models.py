@@ -15,7 +15,10 @@ class School(models.Model):
 
 class Party(models.Model):
     text = models.TextField(verbose_name="Описание")
-    picture = models.ImageField(null=True, blank=True)
+    picture = models.ImageField(
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return self.text
