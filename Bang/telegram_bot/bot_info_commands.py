@@ -16,11 +16,10 @@ REPLY_MARKUP = ReplyKeyboardMarkup(
 ADMINS = [628061591, 247922134]
 
 
+@get_user_data_from_update
 @custom_info_logging
 def start(update: Update, _: CallbackContext) -> None:
     """Sends a message when a user starts a bot."""
-
-    get_user_data_from_update(update)
 
     update.message.reply_text(
         text="Привет! Нажми на кнопку.",
@@ -30,7 +29,7 @@ def start(update: Update, _: CallbackContext) -> None:
 
 @custom_info_logging
 def unknown_command(update: Update, _: CallbackContext) -> None:
-    """Sends a message when a user starts a bot."""
+    """Sends a message when a user types anything unknown. """
 
     get_user_data_from_update(update)
 
@@ -67,8 +66,6 @@ def school(update: Update, _: CallbackContext) -> None:
 
     text = db_commands(School)
 
-    print(update)
-
     update.message.reply_text(text=text, reply_markup=REPLY_MARKUP)
 
 
@@ -87,11 +84,12 @@ def party(update: Update, _: CallbackContext) -> None:
 
     text = db_commands(Party)
 
-    image_value = getattr(Party.objects.last(), "picture")
-    image = settings.MEDIA_ROOT + str(image_value)
+    image_name = getattr(Party.objects.last(), "picture")
+    image = settings.MEDIA_URL + str(image_name)
 
     update.message.bot.send_photo(
-        chat_id=update.effective_chat.id, photo=open(image, "rb")
+        chat_id=update.effective_chat.id,
+        photo=image,
     )
     update.message.reply_text(text=text, reply_markup=REPLY_MARKUP)
 
