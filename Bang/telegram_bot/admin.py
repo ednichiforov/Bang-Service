@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import UsersStartedConv, PartyUsersForNearestParty, AllPartyUsers
+from import_export.admin import ImportExportModelAdmin
 
 
 @admin.register(UsersStartedConv)
-class MainInfo(admin.ModelAdmin):
+class MainInfo(ImportExportModelAdmin):
     list_display = [
         "first_name",
         "last_name",
@@ -16,7 +17,7 @@ class MainInfo(admin.ModelAdmin):
 
 
 @admin.register(PartyUsersForNearestParty)
-class PartyInfo(admin.ModelAdmin):
+class PartyInfo(ImportExportModelAdmin):
     list_display = [
         "user",
         "real_name",
@@ -28,7 +29,7 @@ class PartyInfo(admin.ModelAdmin):
 
 
 @admin.register(AllPartyUsers)
-class AllPartiesInfo(admin.ModelAdmin):
+class AllPartiesInfo(ImportExportModelAdmin):
     list_display = [
         "user",
         "real_name",
