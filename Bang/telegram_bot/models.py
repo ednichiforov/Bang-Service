@@ -29,13 +29,13 @@ class PartyUsersForNearestParty(models.Model):
         UsersStartedConv, on_delete=models.CASCADE, verbose_name="Пользователь"
     )
     real_name = models.CharField(
-        max_length=30, null=False, verbose_name="Имя для вечеринки"
+        max_length=30, blank=True, verbose_name="Имя для вечеринки"
     )
     real_last_name = models.CharField(
-        max_length=30, null=False, verbose_name="Фамилия для вечеринки"
+        max_length=30, blank=True, verbose_name="Фамилия для вечеринки"
     )
     number = models.CharField(
-        max_length=30, null=False, verbose_name="Номер для вечеринки"
+        max_length=30, blank=True, verbose_name="Номер для вечеринки"
     )
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Зарегестрировался"
