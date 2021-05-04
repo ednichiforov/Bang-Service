@@ -1,16 +1,14 @@
 from telegram import Update, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler, CallbackContext
-
 from .bot_info_commands import REPLY_MARKUP
 from .models import UsersStartedConv
-from .custom_logging import custom_info_logging
+
 
 ADMIN_CONV, LOADING_INFO = range(2)
 
 ADMINS = [628061591, 247922134]
 
 
-@custom_info_logging
 def admin_starts_conv(update: Update, _: CallbackContext) -> int:
     """ Asks for information"""
 
@@ -27,7 +25,6 @@ def admin_starts_conv(update: Update, _: CallbackContext) -> int:
         return ConversationHandler.END
 
 
-@custom_info_logging
 def admin_loading_info(update: Update, _: CallbackContext) -> int:
     """ Sends information to all"""
 
@@ -62,7 +59,6 @@ def admin_loading_info(update: Update, _: CallbackContext) -> int:
     return ConversationHandler.END
 
 
-@custom_info_logging
 def admin_cancel(update: Update, _: CallbackContext) -> int:
     """ Cancel the conversation"""
 

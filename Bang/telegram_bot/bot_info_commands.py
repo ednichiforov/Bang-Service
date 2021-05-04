@@ -4,7 +4,7 @@ from telegram.ext import CallbackContext
 
 from main.models import Bar, Party, School
 from .db_usage import get_user_data_from_update
-from .custom_logging import custom_info_logging, custom_warning_logging
+from .custom_logging import custom_warning_logging
 
 
 BUTTONS = [["DJ SCHOOL", "Вечеринки"], ["Барное меню", "Попасть в списки"]]
@@ -17,7 +17,6 @@ ADMINS = [628061591, 247922134]
 
 
 @get_user_data_from_update
-@custom_info_logging
 def start(update: Update, _: CallbackContext) -> None:
     """Sends a message when a user starts a bot."""
 
@@ -27,11 +26,8 @@ def start(update: Update, _: CallbackContext) -> None:
     )
 
 
-@custom_info_logging
 def unknown_command(update: Update, _: CallbackContext) -> None:
     """Sends a message when a user types anything unknown. """
-
-    get_user_data_from_update(update)
 
     update.message.reply_text(
         text="Не понял тебя, нажми на кнопку ниже",
@@ -52,7 +48,7 @@ def commands(update: Update, _: CallbackContext):
         return party(update=update, _=CallbackContext)
 
 
-def db_commands(Table) -> str:
+def db_table(Table) -> str:
     """ Takes text information from DB Table """
 
     text = str(Table.objects.only("text").last())
@@ -60,29 +56,26 @@ def db_commands(Table) -> str:
     return text
 
 
-@custom_info_logging
 def school(update: Update, _: CallbackContext) -> None:
     """ Sends text information about school """
 
-    text = db_commands(School)
+    text = db_table(School)
 
     update.message.reply_text(text=text, reply_markup=REPLY_MARKUP)
 
 
-@custom_info_logging
 def bar(update: Update, _: CallbackContext) -> None:
     """ Sends text information about bar """
 
-    text = db_commands(Bar)
+    text = db_table(Bar)
 
     update.message.reply_text(text=text, reply_markup=REPLY_MARKUP)
 
 
-@custom_info_logging
 def party(update: Update, _: CallbackContext) -> None:
     """ Sends text and image information about parties """
 
-    text = db_commands(Party)
+    text = db_table(Party)
 
     image_name = getattr(Party.objects.last(), "picture")
     image = settings.MEDIA_URL + str(image_name)
