@@ -6,9 +6,7 @@ Bang/.DS_Store
 /.DS_Store
 Bang/main/.DS_Store
 Bang/main/migrations/__pycache__/
-Bang/main/migrations/
 Bang/__pycache__/
-Bang/telegram_bot/migrations/
 Bang/telegram_bot/management/commands/__pycache__/
 Bang/telegram_bot/__pycache__/
 Bang/media/
