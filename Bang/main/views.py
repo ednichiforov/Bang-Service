@@ -12,6 +12,8 @@ party_picture = f"{settings.MEDIA_URL}{picture_name}"
 
 
 def general(request):
+    """ Main webpage """
+
     bar_text = Bar.objects.only("text").last()
     school_text = School.objects.only("text").last()
     party_text = Party.objects.only("text").last()
@@ -29,5 +31,7 @@ def general(request):
 
 
 def users(request, user_id):
+    """ Webpage for registered users"""
+
     PartyUsersForNearestParty.objects.get(user_id=user_id)
     return render(request, "main/users.html", {"party_picture": party_picture})
