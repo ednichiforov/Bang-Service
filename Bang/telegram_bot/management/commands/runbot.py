@@ -8,7 +8,7 @@ from telegram.ext import (
     ConversationHandler,
 )
 
-from telegram_bot.bot_info_commands import start, commands, error, unknown_command
+from telegram_bot.bot_info_commands import start, commands, unknown_command, error
 from telegram_bot.bot_registration_commands import (
     first_name_reg,
     last_name_reg,
@@ -96,8 +96,8 @@ class Command(BaseCommand):
         )
 
         dispatcher.add_handler(admin_conv_handler)
-        # dispatcher.add_error_handler(error)
         dispatcher.add_handler(MessageHandler(Filters.all, callback=unknown_command))
+        dispatcher.add_error_handler(error)
         updater.start_polling()
 
         updater.idle()

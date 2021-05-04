@@ -42,6 +42,7 @@ def register_user_to_party(
             PartyUsersForNearestParty.objects.filter(
                 user=UsersStartedConv.objects.get(user_id=user.id)
             ).update(real_name=real_name)
+
     if real_last_name:
 
         try:
@@ -53,6 +54,7 @@ def register_user_to_party(
             PartyUsersForNearestParty.objects.filter(
                 user=UsersStartedConv.objects.get(user_id=user.id)
             ).update(real_last_name=real_last_name)
+
     if number:
 
         try:
