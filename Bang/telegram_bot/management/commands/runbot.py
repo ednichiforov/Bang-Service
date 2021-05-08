@@ -98,6 +98,6 @@ class Command(BaseCommand):
         dispatcher.add_handler(admin_conv_handler)
         dispatcher.add_handler(MessageHandler(Filters.all, callback=unknown_command))
         dispatcher.add_error_handler(error)
-        updater.start_polling()
+        updater.start_polling(poll_interval=0.5)
 
         updater.idle()
