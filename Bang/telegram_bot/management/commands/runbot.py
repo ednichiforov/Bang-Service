@@ -31,7 +31,7 @@ ADMIN_CONV, LOADING_INFO = range(2)
 class Command(BaseCommand):
     def handle(self, *args, **options):
         updater = Updater(
-            token="1731613284:AAFb38FNilx8DyedftJFnsgiiOywHLeTMBY",
+            token="*",
             use_context=True,
         )
 

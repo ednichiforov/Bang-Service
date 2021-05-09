@@ -1,22 +1,24 @@
 import os
 from pathlib import Path
-
+from boto3.session import Session
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-#k41l@^nnz74%uk17nzrer8d+t441vaimy^^k2@i5q$w1kw@_="
+SECRET_KEY = "*"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+SESSION_COOKIE_SECURE = False
 
+SITE_ID = 2
+
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -29,12 +31,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "main",
-    "import_export",
     "telegram_bot",
+    "import_export",
+    "storages",
     "django_cleanup",
 ]
-
-SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -73,10 +74,10 @@ WSGI_APPLICATION = "Bang.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "bang",
-        "USER": "bang",
-        "PASSWORD": "bang",
-        "HOST": "localhost",
+        "NAME": "*",
+        "USER": "*",
+        "PASSWORD": "*",
+        "HOST": "*",
         "PORT": "5432",
     }
 }
@@ -112,27 +113,93 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
-# Static files (main, JavaScript, Images)
+# Static files (Bang_Website, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_URL = "/static/"
+# STATIC_ROOT = ""
+# STATICFILES_DIRS = [
+# os.path.join(BASE_DIR, "static"),
+# ]
 
-STATICFILES_DIRS = []
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-MEDIA_URL = "/media/"
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # For Importing/Exporting excel files
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+# AWS CONFIG
+AWS_ACCESS_KEY_ID = "*"
+AWS_SECRET_ACCESS_KEY = "*"
+AWS_DEFAULT_REGION = "eu-central-1"
+
+# S3 BUCKET
+AWS_STORAGE_BUCKET_NAME = "*"
+AWS_S3_CUSTOM_DOMAIN = (
+    f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_DEFAULT_REGION}.amazonaws.com"
+)
+AWS_DEFAULT_ACL = None
+
+AWS_LOCATION = "static"
+AWS_LOCATION_MEDIA = "media"
+
+STATICFILES_ROOT = (os.path.join(BASE_DIR, "static"),)
+AWS_S3_FILE_OVERWRITE = True
+
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION_MEDIA}/"
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+DEFAULT_FILE_STORAGE = "Bang.storages.MediaStore"
+
+# CLOUDWATCH
+
+boto3_session = Session(
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name=AWS_DEFAULT_REGION,
+)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "aws": {
+            "format": "%(asctime)s [%(levelname)-8s] %(message)s",
+            "datefmt": "%d-%m-%Y %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "watchtower": {
+            "level": "WARNING",
+            "class": "watchtower.CloudWatchLogHandler",
+            "boto3_session": boto3_session,
+            "log_group": "Bang_service_app",
+            "stream_name": "Bang_service",
+            "formatter": "aws",
+        },
+    },
+    "loggers": {
+        "django": {
+            "level": "WARNING",
+            "handlers": ["watchtower"],
+            "propagate": False,
+        },
+        "telegram_bot": {
+            "level": "WARNING",
+            "handlers": ["watchtower"],
+            "propagate": False,
+        },
+    },
+}
