@@ -2,6 +2,9 @@ Django==3.2
 django-import-export==2.5.0
 django-cleanup==5.1.0
 python-telegram-bot==12.4.1
+watchtower==1.0.6
+boto3==1.17.60
+django-storages==1.11.1
 Pillow==8.2.0
 psycopg2-binary==2.8.6
 qrcode==6.1
