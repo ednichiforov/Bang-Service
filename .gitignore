@@ -1,12 +1,5 @@
 /venv
 .idea/
-Bang/Bang/__pycache__/
-Bang/main/__pycache__/
-Bang/.DS_Store
-/.DS_Store
-Bang/main/.DS_Store
-Bang/main/migrations/__pycache__/
-Bang/__pycache__/
-Bang/telegram_bot/management/commands/__pycache__/
-Bang/telegram_bot/__pycache__/
+**/__pycache__
+**/.DS_Store
 Bang/media/
